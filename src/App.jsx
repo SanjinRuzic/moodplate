@@ -1,9 +1,21 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from "./pages/HomePage.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/TermsOfService.jsx";
+import ScrollToTop from "./components/common/ScrollToTop.jsx";
 
 const App = () => {
-    // App is the application root: keep it minimal and delegate rendering to pages/routes
-    return <HomePage />
+    return (
+        <Router>
+            <ScrollToTop />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+            </Routes>
+        </Router>
+    )
 }
 
 export default App

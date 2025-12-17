@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import logo from '../../assets/moodplate_logo.png'
 
 const Footer = () => {
@@ -39,8 +40,8 @@ const Footer = () => {
             { name: 'Contact', href: '#contact' },
         ],
         legal: [
-            { name: 'Privacy', href: '#privacy' },
-            { name: 'Terms', href: '#terms' },
+            { name: 'Privacy', href: '/privacy' },
+            { name: 'Terms', href: '/terms' },
             { name: 'Cookies', href: '#cookies' },
         ],
     }
@@ -137,9 +138,15 @@ const Footer = () => {
                     <ul className="space-y-3">
                         {footerLinks.legal.map((link) => (
                             <li key={link.name}>
-                                <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
-                                    {link.name}
-                                </a>
+                                {link.href.startsWith('/') ? (
+                                    <Link to={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </Link>
+                                ) : (
+                                    <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </a>
+                                )}
                             </li>
                         ))}
                     </ul>
