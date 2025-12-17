@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Custom animations and utilities */
+@keyframes levitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Utility class to apply the levitation animation */
+.animate-levitate {
+  animation: levitate 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-levitate { animation: none; }
+}
