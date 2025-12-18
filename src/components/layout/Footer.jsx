@@ -42,7 +42,7 @@ const Footer = () => {
         legal: [
             { name: 'Privacy', href: '/privacy' },
             { name: 'Terms', href: '/terms' },
-            { name: 'Cookies', href: '#cookies' },
+            { name: 'Cookies', href: '/cookies' },
         ],
     }
 
