@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import logo from '../../assets/moodplate_logo.png';
 
 const Header = () => {
+    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -85,7 +87,10 @@ const Header = () => {
                         </button>
 
                         {/* CTA Button */}
-                        <button className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full font-semibold hover:from-orange-600 hover:to-amber-600 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                        <button
+                            onClick={() => navigate('/auth/login')}
+                            className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full font-semibold hover:from-orange-600 hover:to-amber-600 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
+                        >
                             Sign In
                         </button>
                     </div>
@@ -141,7 +146,10 @@ const Header = () => {
                                     {link.name}
                                 </a>
                             ))}
-                            <button className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full font-semibold hover:from-orange-600 hover:to-amber-600 transition-all duration-300 shadow-md">
+                            <button
+                                onClick={() => { setIsMenuOpen(false); navigate('/auth/register'); }}
+                                className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full font-semibold hover:from-orange-600 hover:to-amber-600 transition-all duration-300 shadow-md"
+                            >
                                 Get Started
                             </button>
                         </div>

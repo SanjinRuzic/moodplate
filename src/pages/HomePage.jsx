@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import HeroSection from '../components/home/HeroSection.jsx';
@@ -7,6 +8,7 @@ import FeaturesSection from '../components/home/FeaturesSection.jsx';
 import PricingSection from '../components/home/PricingSection.jsx';
 
 const HomePage = () => {
+    const navigate = useNavigate();
     const [selectedPlan, setSelectedPlan] = useState(null);
 
     // centralizes simple navigation/scroll behavior
@@ -18,10 +20,8 @@ const HomePage = () => {
     }, []);
 
     const handleGetStarted = useCallback(() => {
-        // Optionally set a default plan; for now just scroll to pricing
-        if (!selectedPlan) setSelectedPlan('Pro');
-        scrollToId('pricing');
-    }, [scrollToId, selectedPlan]);
+        navigate('/auth/register');
+    }, [navigate]);
 
     const handleLearnMore = useCallback(() => {
         scrollToId('testimonials');
