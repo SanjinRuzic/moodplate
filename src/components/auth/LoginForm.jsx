@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { apiFetch } from '../../utils/apiClient'
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -38,14 +39,7 @@ const LoginForm = () => {
         const {emailOrUsername, password} = formData
         try {
             setIsLoading(true)
-            const response = await fetch('http://localhost:8080/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({emailOrUsername, password})
-            })
-            const data = await response.json()
+            const data = await apiFetch('/api/auth/login', { method: 'POST', body: { emailOrUsername, password } })
             console.log(data)
         } catch {
             console.log('Error logging in')

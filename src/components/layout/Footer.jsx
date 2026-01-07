@@ -30,14 +30,16 @@ const Footer = () => {
 
     const footerLinks = {
         product: [
-            { name: 'Features', href: '#features' },
-            { name: 'Pricing', href: '#pricing' },
-            { name: 'FAQ', href: '#faq' },
+            { name: 'Features', href: '/features' },
+            { name: 'Pricing', href: '/pricing' },
+            { name: 'Recipes', href: '/recipes' },
+            { name: 'How It Works', href: '/how-it-works' },
+            { name: 'FAQ', href: '/faq' },
         ],
         company: [
-            { name: 'About', href: '#about' },
-            { name: 'Blog', href: '#blog' },
-            { name: 'Contact', href: '#contact' },
+            { name: 'About', href: '/about' },
+            { name: 'Blog', href: '/blog' },
+            { name: 'Contact', href: '/contact' },
         ],
         legal: [
             { name: 'Privacy', href: '/privacy' },
@@ -61,13 +63,13 @@ const Footer = () => {
 
                 {/* Company info */}
                 <div className="lg:col-span-2">
-                    <a href="#home" className="flex items-center mb-4 group">
+                    <Link to="/" className="flex items-center mb-4 group">
                         <img
                             src={logo}
                             alt="MoodPlate Logo"
                             className="h-12 w-auto transition-transform duration-300 group-hover:scale-110"
                         />
-                    </a>
+                    </Link>
 
                     <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
                         Satisfy your cravings the smart way. AI-powered meal suggestions perfectly tailored to your mood.
@@ -110,9 +112,15 @@ const Footer = () => {
                     <ul className="space-y-3">
                         {footerLinks.product.map((link) => (
                             <li key={link.name}>
-                                <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
-                                    {link.name}
-                                </a>
+                                {link.href.startsWith('/') ? (
+                                    <Link to={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </Link>
+                                ) : (
+                                    <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </a>
+                                )}
                             </li>
                         ))}
                     </ul>
@@ -124,9 +132,15 @@ const Footer = () => {
                     <ul className="space-y-3">
                         {footerLinks.company.map((link) => (
                             <li key={link.name}>
-                                <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
-                                    {link.name}
-                                </a>
+                                {link.href.startsWith('/') ? (
+                                    <Link to={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </Link>
+                                ) : (
+                                    <a href={link.href} className="text-gray-400 hover:text-orange-500 text-sm">
+                                        {link.name}
+                                    </a>
+                                )}
                             </li>
                         ))}
                     </ul>

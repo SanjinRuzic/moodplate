@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import logo from '../../assets/moodplate_logo.png';
 
@@ -23,11 +23,12 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'Recipes', href: '#recipes' },
-        { name: 'How It Works', href: '#how-it-works' },
-        { name: 'About', href: '#about' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '/' },
+        { name: 'Recipes', href: '/recipes' },
+        { name: 'How It Works', href: '/how-it-works' },
+        { name: 'FAQ', href: '/faq' },
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
     ];
 
     return (
@@ -42,28 +43,42 @@ const Header = () => {
                 <div className="flex items-center justify-between h-16 md:h-20">
 
                     {/* Logo */}
-                    <a href="#home" className="flex items-center space-x-3 cursor-pointer group">
+                    <Link to="/" className="flex items-center space-x-3 cursor-pointer group">
                         <img
                             src={logo}
                             alt="MoodPlate Logo"
                             className="h-10 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
                         />
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-1">
                         {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                                    isScrolled
-                                        ? 'text-gray-700 hover:text-orange-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-orange-400 dark:hover:bg-gray-800'
-                                        : 'text-white hover:text-orange-300 hover:bg-white/10'
-                                }`}
-                            >
-                                {link.name}
-                            </a>
+                            link.href.startsWith('/') ? (
+                                <Link
+                                    key={link.name}
+                                    to={link.href}
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                                        isScrolled
+                                            ? 'text-gray-700 hover:text-orange-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-orange-400 dark:hover:bg-gray-800'
+                                            : 'text-white hover:text-orange-300 hover:bg-white/10'
+                                    }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            ) : (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                                        isScrolled
+                                            ? 'text-gray-700 hover:text-orange-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-orange-400 dark:hover:bg-gray-800'
+                                            : 'text-white hover:text-orange-300 hover:bg-white/10'
+                                    }`}
+                                >
+                                    {link.name}
+                                </a>
+                            )
                         ))}
                     </div>
 
@@ -137,14 +152,25 @@ const Header = () => {
                     <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 animate-slide-down">
                         <div className="px-4 py-6 space-y-3">
                             {navLinks.map((link) => (
-                                <a
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="block px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-800 hover:text-orange-600 dark:hover:text-orange-400 font-medium transition-colors duration-200"
-                                >
-                                    {link.name}
-                                </a>
+                                link.href.startsWith('/') ? (
+                                    <Link
+                                        key={link.name}
+                                        to={link.href}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-800 hover:text-orange-600 dark:hover:text-orange-400 font-medium transition-colors duration-200"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ) : (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-800 hover:text-orange-600 dark:hover:text-orange-400 font-medium transition-colors duration-200"
+                                    >
+                                        {link.name}
+                                    </a>
+                                )
                             ))}
                             <button
                                 onClick={() => { setIsMenuOpen(false); navigate('/auth/register'); }}
